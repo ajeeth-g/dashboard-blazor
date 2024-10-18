@@ -70,10 +70,15 @@
 .sidebar-dropdown-list[b-ctw3n2r260] {
   margin-top: 0.5rem;
   padding-left: 1.5rem;
+  list-style: none;
 }
 
 .sidebar-dropdown-list-item[b-ctw3n2r260] {
+  color: #fff;
   padding: 0.5rem 0;
+}
+
+.sidebar-dropdown-list-item[b-ctw3n2r260] {
   color: #d0d0d5;
   text-decoration: none;
   transition: color 0.2s ease;

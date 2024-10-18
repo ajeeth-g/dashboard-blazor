@@ -27,3 +27,4 @@
 /home/ajeeth/cSharpProject/dashboard-blazor/obj/Debug/net8.0/dashboard-blazor.pdb
 /home/ajeeth/cSharpProject/dashboard-blazor/obj/Debug/net8.0/dashboard-blazor.genruntimeconfig.cache
 /home/ajeeth/cSharpProject/dashboard-blazor/obj/Debug/net8.0/ref/dashboard-blazor.dll
+/home/ajeeth/cSharpProject/dashboard-blazor/obj/Debug/net8.0/dashboard-blazor.sourcelink.json
