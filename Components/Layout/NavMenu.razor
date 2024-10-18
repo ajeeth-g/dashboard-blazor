@@ -1,0 +1,171 @@
+﻿@page "/sidebar"
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+
+@code {
+    public class NavigationItem
+    {
+        public string Heading { get; set; }
+        public string MainIcon { get; set; }
+        public string Title { get; set; }
+        public string Link { get; set; }
+        public Notification Notification { get; set; }
+        public string RightIcon { get; set; }
+        public string LeftIcon { get; set; }
+        public List<SubItem> SubItems { get; set; }
+    }
+
+    public class Notification
+    {
+        public bool IsNotification { get; set; }
+        public string Value { get; set; }
+    }
+
+    public class SubItem
+    {
+        public string Title { get; set; }
+        public string Link { get; set; }
+    }
+
+    private List<NavigationItem> navigationItems = new List<NavigationItem>
+{
+new NavigationItem
+{
+Heading = "main",
+MainIcon = @"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-house'
+viewBox='0 0 16 16'>
+<path d='M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0
+1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0
+0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z'/>
+</svg>",
+Title = "Dashboard",
+Link = "/dashboard",
+Notification = new Notification { IsNotification = true, Value = "12" },
+RightIcon = @"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi
+bi-caret-down-fill' viewBox='0 0 16 16'>
+<path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506
+0z'/>
+</svg>",
+LeftIcon = @"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi
+bi-caret-right-fill' viewBox='0 0 16 16'>
+<path d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0
+1.506z'/>
+</svg>",
+SubItems = new List<SubItem>
+{
+new SubItem { Title = "Orders", Link = "/orders" },
+new SubItem { Title = "Products", Link = "/products" },
+new SubItem { Title = "Customers", Link = "/customers" },
+new SubItem { Title = "Reports", Link = "/reports" },
+new SubItem { Title = "Analytics", Link = "/analytics" },
+new SubItem { Title = "Inventory", Link = "/inventory" },
+new SubItem { Title = "Settings", Link = "/settings" },
+new SubItem { Title = "Help", Link = "/help" },
+new SubItem { Title = "Logout", Link = "/logout" },
+}
+},
+new NavigationItem
+{
+Heading = "pages",
+MainIcon = @"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi
+bi-file-earmark' viewBox='0 0 16 16'>
+<path d='M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1
+0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z'/>
+</svg>",
+Title = "Pages",
+Link = "/pages",
+Notification = new Notification { IsNotification = false, Value = "New" },
+RightIcon = @"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi
+bi-caret-down-fill' viewBox='0 0 16 16'>
+<path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506
+0z'/>
+</svg>",
+LeftIcon = @"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi
+bi-caret-right-fill' viewBox='0 0 16 16'>
+<path d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0
+1.506z'/>
+</svg>",
+SubItems = new List<SubItem>
+{
+new SubItem { Title = "About Us", Link = "/about-us" },
+new SubItem { Title = "Counters", Link = "/counters" },
+new SubItem { Title = "Blog", Link = "/blog" },
+new SubItem { Title = "Chat", Link = "/chat" },
+new SubItem { Title = "Contacts", Link = "/contacts" },
+new SubItem { Title = "Ecommerce", Link = "/ecommerce" },
+new SubItem { Title = "Add Products", Link = "/add-products" },
+new SubItem { Title = "Cart", Link = "/cart" },
+new SubItem { Title = "Checkout", Link = "/checkout" },
+new SubItem { Title = "Edit Products", Link = "/edit-products" },
+new SubItem { Title = "Order Details", Link = "/order-details" },
+new SubItem { Title = "Order", Link = "/order" },
+}
+}
+};
+
+    private string activeDropdown = "main";
+
+    private void ToggleDropdown(string heading)
+    {
+        activeDropdown = activeDropdown == heading ? null : heading;
+    }
+}
+
+<section class="sidebar">
+    <div class="sidebar-logo"></div>
+    <div class="sidebar-content">
+        @foreach (var item in navigationItems)
+        {
+            var isDropdownOpen = activeDropdown == item.Heading;
+
+            <div class="sidebar-section">
+                <div class="sidebar-heading">
+                    <h3>@item.Heading</h3>
+                </div>
+
+                <div class="sidebar-dropdown">
+                    <div class="sidebar-dropdown-title" @onclick="() => ToggleDropdown(item.Heading)">
+                        <div class="sidebar-dropdown-title-icon">
+                            <div class="sidebar-dropdown-icon">
+                                @((MarkupString)item.MainIcon)
+                            </div>
+                            <NavLink href="@item.Link">@item.Title</NavLink>
+                            @if (item.Notification.IsNotification)
+                            {
+                                <span class="notification">@item.Notification.Value</span>
+                            }
+                            else
+                            {
+                                <span class="notification blue">@item.Notification.Value</span>
+                            }
+                        </div>
+
+                        <div class="sidebar-dropdown-arrow">
+                            @if (isDropdownOpen)
+                            {
+                                @((MarkupString)item.RightIcon)
+                            }
+                            else
+                            {
+                                @((MarkupString)item.LeftIcon)
+                            }
+                        </div>
+                    </div>
+
+                    @if (isDropdownOpen)
+                    {
+                        <ul class="sidebar-dropdown-list">
+                            @foreach (var subItem in item.SubItems)
+                            {
+                                <li class="sidebar-dropdown-list-item">
+                                    <NavLink href="@subItem.Link">@subItem.Title</NavLink>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>

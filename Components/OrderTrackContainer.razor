@@ -1,0 +1,124 @@
+@page "/ordertrackcontainer"
+
+<section class="order-track-section">
+    <div class="order-track-title-container">
+        <p class="order-track-title">Order Tracking</p>
+        <p class="order-track-id">#SPK1218153635</p>
+    </div>
+
+    <div class="order-track-profile">
+        @foreach (var order in OrderTrackDetails)
+        {
+            <div class="order-track-details" key="@order.Id">
+                <div class="order-track-detail">
+                    <div class="order-track-profile-image">
+                        <img src="@order.Image" alt="profile-image" />
+                    </div>
+                    <div class="order-track-status-details">
+                        <div class="order-track-status-detail">
+                            <p class="order-track-status">@order.Status</p>
+                            <p class="order-track-date">@order.Date</p>
+                        </div>
+                        <div class="order-track-description">
+                            @if (!string.IsNullOrEmpty(order.DescriptionStatus1))
+                            {
+                                <div class="order-track-description-status">
+                                    <p>@order.DescriptionStatus1</p>
+                                    @if (!string.IsNullOrEmpty(order.EstimatedDate1))
+                                    {
+                                        <p class="order-track-estimatedDate">@order.EstimatedDate1</p>
+                                    }
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(order.DescriptionStatus2))
+                            {
+                                <div class="order-track-description-status">
+                                    <p>@order.DescriptionStatus2</p>
+                                    @if (!string.IsNullOrEmpty(order.EstimatedDate2))
+                                    {
+                                        <p class="order-track-estimatedDate">@order.EstimatedDate2</p>
+                                    }
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(order.DescriptionStatus3))
+                            {
+                                <div class="order-track-description-status">
+                                    <p>@order.DescriptionStatus3</p>
+                                    @if (!string.IsNullOrEmpty(order.EstimatedDate3))
+                                    {
+                                        <p class="order-track-estimatedDate">@order.EstimatedDate3</p>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    public class OrderTrackDetail
+    {
+        public int Id { get; set; }
+        public string Image { get; set; }
+        public string Status { get; set; }
+        public string Date { get; set; }
+        public string DescriptionStatus1 { get; set; }
+        public string EstimatedDate1 { get; set; }
+        public string DescriptionStatus2 { get; set; }
+        public string EstimatedDate2 { get; set; }
+        public string DescriptionStatus3 { get; set; }
+        public string EstimatedDate3 { get; set; }
+    }
+
+    private OrderTrackDetail[] OrderTrackDetails = new[]
+    {
+new OrderTrackDetail
+{
+Id = 1,
+Image = "https://m.media-amazon.com/images/I/81LNgb-7FnL.jpg",
+Status = "Order Placed",
+Date = "Nov 03, 2022",
+DescriptionStatus1 = "Order placed successfully by Sansa Taylor",
+EstimatedDate1 = "Nov 03, 2022, 15:38",
+},
+new OrderTrackDetail
+{
+Id = 1,
+Image = "https://m.media-amazon.com/images/I/81LNgb-7FnL.jpg",
+Status = "Picked",
+Date = "Nov 03, 2022",
+DescriptionStatus1 = "Order placed successfully by Sansa Taylor",
+EstimatedDate1 = "Nov 03, 2022, 15:38",
+},
+new OrderTrackDetail
+{
+Id = 1,
+Image = "https://m.media-amazon.com/images/I/81LNgb-7FnL.jpg",
+Status = "Shipping",
+Date = "Nov 03, 2022",
+DescriptionStatus1 = "Arrived USA SGS Warehouse",
+DescriptionStatus2 = "Picked by SGS Agent and on the way",
+DescriptionStatus3 = "Arrived in hyderabad and expected delivery is Apr 16 2024",
+EstimatedDate1 = "Nov 03, 2022, 15:38",
+EstimatedDate2 = "Nov 03, 2022, 15:38",
+EstimatedDate3 = "Nov 03, 2022, 15:38",
+},
+new OrderTrackDetail
+{
+Id = 1,
+Image = "https://m.media-amazon.com/images/I/81LNgb-7FnL.jpg",
+Status = "Out for Delivery",
+Date = "Nov 03, 2022 (expected)",
+},
+new OrderTrackDetail
+{
+Id = 1,
+Image = "https://m.media-amazon.com/images/I/81LNgb-7FnL.jpg",
+Status = "Delivered",
+Date = "Nov 03, 2022",
+},
+};
+}

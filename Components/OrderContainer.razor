@@ -1,0 +1,138 @@
+@page "/order-container"
+@code {
+    public List<OrderItem> orderData = new List<OrderItem>
+{
+new OrderItem
+{
+Id = 1,
+Image = "https://m.media-amazon.com/images/I/81LNgb-7FnL.jpg",
+Name = "Orange Watch Series 4",
+DialSize = "Dial Size: 44mm",
+Color = "Color: Metallic Black",
+TrackingNo = "SPK1218153635",
+Price = "$1249",
+Quantity = 1,
+TotalPrice = "$1249",
+Offer = false
+},
+new OrderItem
+{
+Id = 2,
+Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2lRHCgyF1eylId3_C7dMJbDPP9Tt6vMrqEQ&s",
+Name = "DapZem & Co Sweat Shirt",
+DialSize = "Dial Size: 44mm",
+Color = "Color: Metallic Black",
+TrackingNo = "SPK1218153635",
+Price = "$499",
+Quantity = 2,
+TotalPrice = "$998",
+Offer = true
+},
+new OrderItem
+{
+Id = 3,
+Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2lRHCgyF1eylId3_C7dMJbDPP9Tt6vMrqEQ&s",
+Name = "Denim Corporation Sweat Shirt",
+DialSize = "Dial Size: 44mm",
+Color = "Color: Metallic Black",
+TrackingNo = "SPK1218153635",
+Price = "$799",
+Quantity = 1,
+TotalPrice = "$799",
+Offer = true
+}
+};
+
+    public class OrderItem
+    {
+        public int Id { get; set; }
+        public string Image { get; set; }
+        public string Name { get; set; }
+        public string DialSize { get; set; }
+        public string Color { get; set; }
+        public string TrackingNo { get; set; }
+        public string Price { get; set; }
+        public int Quantity { get; set; }
+        public string TotalPrice { get; set; }
+        public bool Offer { get; set; }
+    }
+}
+
+<div class="table-container">
+    <div class="order-table">
+        <div class="table-title">
+            <p class="table-title-order-id">
+                Order No - <span class="order-id">#SPK-1023</span>
+            </p>
+            <p class="table-title-date">Estimated Delivery: 14, Oct 2024</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Tracking No</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in orderData)
+                {
+                    <tr key="@item.Id">
+                        <td class="item-column">
+                            <img src="@item.Image" alt="@item.Name" class="item-image" />
+                            <div class="item-details">
+                                <p class="item-name">@item.Name</p>
+                                <p class="item-detail">@item.DialSize</p>
+                                <div class="item-offer">
+                                    <p class="item-detail">@item.Color</p>
+                                    @if (item.Offer)
+                                    {
+                                        <p class="offer-tag">In Offer</p>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td class="trackingNo">
+                            <a>@item.TrackingNo</a>
+                        </td>
+                        <td class="price">
+                            <p>@item.Price</p>
+                        </td>
+                        <td class="quantity">
+                            <p>@item.Quantity</p>
+                        </td>
+                        <td class="totalPrice">
+                            <p>@item.TotalPrice</p>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="order-amount-details">
+            <div class="order-amount-detail">
+                <p>Total Items:</p>
+                <span>04</span>
+            </div>
+            <div class="order-amount-detail">
+                <p>Sub Total:</p>
+                <span>$3,100</span>
+            </div>
+            <div class="order-amount-detail">
+                <p>Applied Coupon:</p>
+                <span class="coupon">SPK12</span>
+            </div>
+            <div class="order-amount-detail">
+                <p>Delivery Fees:</p>
+                <span class="delivery-fees">+$29</span>
+            </div>
+            <div class="order-amount-detail">
+                <p>Total Saved:</p>
+                <span class="saved">$3,799</span>
+            </div>
+        </div>
+    </div>
+</div>

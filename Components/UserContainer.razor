@@ -1,0 +1,118 @@
+@page "/user"
+
+<section class="user-section">
+    <div class="user-title-container">
+        <p class="user-title">User Details</p>
+    </div>
+
+    <div class="user-profile">
+        @foreach (var user in UserDetails)
+        {
+            <div class="user-details" key="@user.GetHashCode()">
+                <div class="user-detail">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                            alt="Profile" class="header-profile-image">
+                    </div>
+                    <div class="user-profile-details">
+                        <p>@user.Name</p>
+                        <p>@user.Email</p>
+                    </div>
+                </div>
+                @if (user.IsPrimary)
+                {
+                    <div class="user-priority">
+                        <p>Prime User</p>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="user-personal-details">
+        @foreach (var detail in PersonalDetails)
+        {
+            <div class="user-info-section" key="@detail.GetHashCode()">
+                <h3>@detail.Title</h3>
+                @foreach (var item in detail.Info)
+                {
+                    <div key="@item.GetHashCode()" class="user-info-content">
+                        <span class="info-label">@item.Label:</span>
+                        <span class="info-value">@item.Value</span>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="user-purchase-details">
+        Total <span class="user-purchase-highlight">294 items</span> purchased upto now
+    </div>
+</section>
+
+@code {
+    private List<User> UserDetails = new List<User>
+{
+new User
+{
+Name = "Ajeeth",
+Email = "ajeeth@gmail.com",
+IsPrimary = true,
+},
+};
+
+    private List<PersonalDetail> PersonalDetails = new List<PersonalDetail>
+{
+new PersonalDetail
+{
+Title = "Delivery Address:",
+Info = new List<InfoItem>
+{
+new InfoItem { Label = "Landmark", Value = "MIG-1-11" },
+new InfoItem { Label = "Street", Value = "Monroe Street" },
+new InfoItem { Label = "City", Value = "Georgertown" },
+new InfoItem { Label = "State", Value = "Washington D.C" },
+new InfoItem { Label = "Country", Value = "USA" },
+new InfoItem { Label = "Zipcode", Value = "641602" },
+},
+},
+new PersonalDetail
+{
+Title = "Send Updates to:",
+Info = new List<InfoItem>
+{
+new InfoItem { Label = "Phone", Value = "55551-0123-1210" },
+new InfoItem { Label = "Email", Value = "ajeeth@gmail.com" },
+},
+},
+new PersonalDetail
+{
+Title = "Order Summary",
+Info = new List<InfoItem>
+{
+new InfoItem { Label = "Ordered Date", Value = "24, Nov 2022" },
+new InfoItem { Label = "Ordered Time", Value = "11:47AM" },
+new InfoItem { Label = "Payment interface", Value = "UPI" },
+},
+},
+};
+
+    public class User
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public bool IsPrimary { get; set; }
+    }
+
+    public class PersonalDetail
+    {
+        public string Title { get; set; }
+        public List<InfoItem> Info { get; set; }
+    }
+
+    public class InfoItem
+    {
+        public string Label { get; set; }
+        public string Value { get; set; }
+    }
+}
